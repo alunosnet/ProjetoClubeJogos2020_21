@@ -14,6 +14,8 @@ public class ObjetoMultiNivel : MonoBehaviour
     [SerializeField] string MyID;
     [SerializeField] bool SaveOnEnd = false;
     [SerializeField] bool LoadOnStart = false;
+    [SerializeField] bool SavePosition = false;
+    [SerializeField] bool SaveRotation = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,36 +32,56 @@ public class ObjetoMultiNivel : MonoBehaviour
         //guardar estado
         if (MyID != "" && SaveOnEnd)
         {
-            string posicao = String.Format("{0};{1};{2}", transform.position.x, transform.position.y, transform.position.z);
-            Debug.Log("Guardei a minha posicao " + posicao);
-            PlayerPrefs.SetString(MyID, posicao);
+            if (SavePosition)
+            {
+                string posicao = String.Format("{0};{1};{2}", transform.position.x, transform.position.y, transform.position.z);
+                Debug.Log("Guardei a minha posicao " + posicao);
+                PlayerPrefs.SetString(MyID+"Pos", posicao);
+            }
+            if (SaveRotation)
+            {
+                string rotacao = String.Format("{0};{1};{2}", transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+                Debug.Log("Guardei a minha rotacao " + rotacao);
+                PlayerPrefs.SetString(MyID + "Rot", rotacao);
+            }
             PlayerPrefs.Save();
         }
     }
-    private void OnSceneUnloaded(Scene arg0)
+   /* private void OnSceneUnloaded(Scene arg0)
     {
         Debug.Log("Nível terminou "+arg0.name);
         //guardar estado
         if (MyID != "" && SaveOnEnd)
         {
-            string posicao = String.Format("{0};{1};{2}", transform.position.x, transform.position.y, transform.position.z);
+            string posicao = String.Format("Pos:{0};{1};{2}", transform.position.x, transform.position.y, transform.position.z);
             Debug.Log("Guardei a minha posicao " + posicao);
             PlayerPrefs.SetString(MyID, posicao);
             PlayerPrefs.Save();
         }
     }
-
+    */
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         Debug.Log("Nível começou " + arg0.name);
         if (MyID != "" && LoadOnStart)
         {
-            string posicao=PlayerPrefs.GetString(MyID,"");
-            Debug.Log("A minha posicao "+posicao);
-            if (posicao != "")
+            string posicao=PlayerPrefs.GetString(MyID+"Pos","");
+            if (posicao != "") {
+
+                Debug.Log("A minha posicao " + posicao);
+
+                    string[] pos = posicao.Split(';');
+                    transform.position = new Vector3(float.Parse(pos[0]),
+                        float.Parse(pos[1]), float.Parse(pos[2]));
+                
+            }
+            string rotacao = PlayerPrefs.GetString(MyID + "Rot", "");
+            if (rotacao != "")
             {
-                string[] pos = posicao.Split(';');
-                transform.position = new Vector3(float.Parse(pos[0]),
+                Debug.Log("A minha rotacao " + rotacao);
+
+                string[] pos = rotacao.Split(';');
+                transform.eulerAngles = new Vector3(float.Parse(pos[0]),
                     float.Parse(pos[1]), float.Parse(pos[2]));
             }
         }
