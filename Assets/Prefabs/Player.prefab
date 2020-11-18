@@ -111,6 +111,8 @@ GameObject:
   - component: {fileID: 3416413251780955510}
   - component: {fileID: 3416413251780955507}
   - component: {fileID: 3416413251780955511}
+  - component: {fileID: 371393581}
+  - component: {fileID: 371393582}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -307,3 +309,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forca: 50
+--- !u!114 &371393581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416413251780955519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8729a2d75690f448b2b3310d6c0ffa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &371393582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416413251780955519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0a5536dfe63414893c4766d2437c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 100
+  playerBody: {fileID: 3416413251780955516}
