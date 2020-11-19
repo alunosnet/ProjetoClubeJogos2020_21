@@ -12,7 +12,6 @@ using UnityEngine.SceneManagement;
 public class ObjetoMultiNivel : MonoBehaviour
 {
     [SerializeField] string MyID;
-    [SerializeField] bool SaveOnEnd = false;
     [SerializeField] bool LoadOnStart = false;
     [SerializeField] bool SavePosition = false;
     [SerializeField] bool SaveRotation = false;
@@ -30,7 +29,7 @@ public class ObjetoMultiNivel : MonoBehaviour
     {
         Debug.Log("Vou ser destruido");
         //guardar estado
-        if (MyID != "" && SaveOnEnd)
+        if (MyID != "")
         {
             if (SavePosition)
             {
