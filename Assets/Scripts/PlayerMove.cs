@@ -9,8 +9,6 @@ public class PlayerMove : MonoBehaviour
     float velocidadeAndar = 5;
     [SerializeField]
     float velocidadeRodar = 5;
-    [SerializeField]
-    bool RodarComTeclado = true;
 
     CharacterController _characterController;
     Animator _animator;
@@ -33,19 +31,12 @@ public class PlayerMove : MonoBehaviour
         inputRodar = CrossPlatformInputManager.GetAxis("Horizontal");
 
         Vector3 novaPosicao = transform.forward * velocidadeAndar * inputAndar;
-        novaPosicao.y += Physics.gravity.y;
+        novaPosicao.y = Physics.gravity.y;
 
         _characterController.Move(novaPosicao * Time.deltaTime);
 
-        if (RodarComTeclado == false)
-        {
-            novaPosicao = transform.right * velocidadeRodar * inputRodar;
-            _characterController.Move(novaPosicao * Time.deltaTime);
-        }
-        else
-        {
-            _characterController.transform.Rotate(_characterController.transform.up * velocidadeRodar * inputRodar);
-        }
+        _characterController.transform.Rotate(_characterController.transform.up * velocidadeRodar * inputRodar);
+
 
         if(_animator!=null) _animator.SetFloat("velocidade", inputAndar);
     }
