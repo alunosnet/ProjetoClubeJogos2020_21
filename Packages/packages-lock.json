@@ -67,41 +67,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-=======
-    "com.unity.multiplayer-hlapi": {
-      "version": "1.0.6",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "nuget.mono-cecil": "0.1.6-preview"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.probuilder": {
-      "version": "4.2.3",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.settings-manager": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.purchasing": {
-      "version": "2.0.6",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.settings-manager": {
-      "version": "1.0.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
->>>>>>> 1c7f9a2e12c30d669d39024827f2a45a88d21570
     "com.unity.test-framework": {
       "version": "1.1.18",
       "depth": 0,
@@ -145,16 +110,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-=======
-    "nuget.mono-cecil": {
-      "version": "0.1.6-preview",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
->>>>>>> 1c7f9a2e12c30d669d39024827f2a45a88d21570
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
