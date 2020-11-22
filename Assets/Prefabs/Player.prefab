@@ -111,8 +111,8 @@ GameObject:
   - component: {fileID: 3416413251780955510}
   - component: {fileID: 3416413251780955507}
   - component: {fileID: 3416413251780955511}
-  - component: {fileID: 371393581}
   - component: {fileID: 371393582}
+  - component: {fileID: 357300547}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidadeAndar: 5
   velocidadeRodar: 2
+  RodarComTeclado: 0
 --- !u!114 &3416413251780955510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,18 +310,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forca: 50
---- !u!114 &371393581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416413251780955519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8729a2d75690f448b2b3310d6c0ffa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &371393582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,3 +324,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   playerBody: {fileID: 3416413251780955516}
+--- !u!114 &357300547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416413251780955519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05699dca8afa935479ea103fd4d1290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mira: {fileID: 0}
+  _default: {r: 1, g: 1, b: 1, a: 1}
+  _interactColor: {r: 1, g: 0.033018887, b: 0.033018887, a: 1}
+  maxDistance: 5
