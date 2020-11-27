@@ -113,6 +113,8 @@ GameObject:
   - component: {fileID: 3416413251780955511}
   - component: {fileID: 371393582}
   - component: {fileID: 357300547}
+  - component: {fileID: 4040882620945558949}
+  - component: {fileID: 6256536953420232300}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -281,7 +283,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  jumpMultiplier: 25
+  jumpMultiplier: 30
   isJumping: 0
   playerGrounded: 0
 --- !u!114 &3416413251780955507
@@ -322,7 +324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0a5536dfe63414893c4766d2437c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivityX: 2
+  mouseSensitivityY: -1
+  SmoothDampX: 0.5
+  SmoothDampY: 0.5
+  minCameraY: 1
+  maxCameraY: 7
   playerBody: {fileID: 3416413251780955516}
 --- !u!114 &357300547
 MonoBehaviour:
@@ -339,4 +346,33 @@ MonoBehaviour:
   _mira: {fileID: 0}
   _default: {r: 1, g: 1, b: 1, a: 1}
   _interactColor: {r: 1, g: 0.033018887, b: 0.033018887, a: 1}
-  maxDistance: 5
+  maxDistance: 2
+--- !u!114 &4040882620945558949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416413251780955519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13ed8a73fb4c7144ab9c0824317431e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panel: {fileID: 0}
+  _imagens: []
+--- !u!114 &6256536953420232300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416413251780955519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d69f49dcff0eb646af5de21510d7ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: 100
+  Cor_Perder_Vida: {r: 1, g: 0, b: 0, a: 1}
+  tempoMudaCor: 1
