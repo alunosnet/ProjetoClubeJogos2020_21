@@ -11,12 +11,13 @@ public class PlayerMove : MonoBehaviour
     float velocidadeRodar = 5;
     [SerializeField]
     bool RodarComTeclado = true;
-
+    [SerializeField]
+    float speedFactor = 1.5f;
     CharacterController _characterController;
     Animator _animator;
     float inputAndar;
     float inputRodar;
-    bool inputSprint;
+    float inputSprint;
 
 
     // Start is called before the first frame update
@@ -31,8 +32,11 @@ public class PlayerMove : MonoBehaviour
     {
         inputAndar = CrossPlatformInputManager.GetAxis("Vertical");
         inputRodar = CrossPlatformInputManager.GetAxis("Horizontal");
+        inputSprint = CrossPlatformInputManager.GetAxis("Fire3");
 
-        Vector3 novaPosicao = transform.forward * velocidadeAndar * inputAndar;
+        inputAndar = velocidadeAndar * inputAndar + (velocidadeAndar * inputSprint);
+
+        Vector3 novaPosicao = transform.forward *inputAndar;
         novaPosicao.y += Physics.gravity.y;
 
         _characterController.Move(novaPosicao * Time.deltaTime);
