@@ -8,8 +8,10 @@ public class PlayerJump : MonoBehaviour
     CharacterController _characterController;
     [SerializeField] private AnimationCurve jumpFallOff;
     [SerializeField] private float jumpMultiplier;
-    [SerializeField] private bool isJumping;
+    [SerializeField] private bool isJumping=false;
     [SerializeField] bool playerGrounded;
+    public bool canDoubleJump = false;
+    [SerializeField] bool isDoubleJumping=false;
     Animator _animator;
     // Start is called before the first frame update
     void Start()
@@ -21,12 +23,24 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Jump") && isJumping == false)
+        if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
-            isJumping = true;
-            if(_animator!=null)
-                _animator.SetTrigger("jump");
-            StartCoroutine(JumpEvent());
+            if (isJumping == false)
+            {
+                isJumping = true;
+                if (_animator != null)
+                    _animator.SetTrigger("jump");
+                StartCoroutine(JumpEvent());
+            }
+            else
+            {
+                //double jump
+                if (canDoubleJump == false || isDoubleJumping) return;
+                isDoubleJumping = true;
+                StopAllCoroutines();
+                StartCoroutine(JumpEvent());
+
+            }
         }
         playerGrounded = _characterController.isGrounded;
     }
@@ -47,5 +61,6 @@ public class PlayerJump : MonoBehaviour
             yield return null;
         } while (_characterController.collisionFlags != CollisionFlags.Above && isJumping == true);
         isJumping = false;
+        isDoubleJumping = false;
     }
 }
