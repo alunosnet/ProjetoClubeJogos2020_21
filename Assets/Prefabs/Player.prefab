@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3416413250141522811}
   - component: {fileID: 3416413250141522814}
   - component: {fileID: 3416413250141522809}
-  - component: {fileID: 3416413250141522808}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -27,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3416413250141522810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.81, z: 0.35}
+  m_LocalPosition: {x: 0, y: 0.81, z: 0.356}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 3416413251780955516}
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3416413250141522808
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416413250141522810}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3416413251780955519
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +233,8 @@ MonoBehaviour:
   velocidadeAndar: 5
   velocidadeRodar: 2
   RodarComTeclado: 0
+  speedFactor: 1.5
+  slideFriction: 0.3
 --- !u!114 &3416413251780955510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +274,8 @@ MonoBehaviour:
   jumpMultiplier: 30
   isJumping: 0
   playerGrounded: 0
+  canDoubleJump: 1
+  isDoubleJumping: 0
 --- !u!114 &3416413251780955507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,8 +314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0a5536dfe63414893c4766d2437c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivityX: 2
-  mouseSensitivityY: -1
+  mouseSensitivityX: 4
+  mouseSensitivityY: -0.3
   SmoothDampX: 0.5
   SmoothDampY: 0.5
   minCameraY: 1
@@ -359,8 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13ed8a73fb4c7144ab9c0824317431e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panel: {fileID: 0}
-  _imagens: []
 --- !u!114 &6256536953420232300
 MonoBehaviour:
   m_ObjectHideFlags: 0

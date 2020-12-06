@@ -9,7 +9,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private AnimationCurve jumpFallOff;
     [SerializeField] private float jumpMultiplier;
     [SerializeField] private bool isJumping=false;
-    [SerializeField] bool playerGrounded;
+    [SerializeField] public bool playerGrounded;
     public bool canDoubleJump = false;
     [SerializeField] bool isDoubleJumping=false;
     Animator _animator;
@@ -19,9 +19,13 @@ public class PlayerJump : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
     }
-
+    //private void FixedUpdate()
+    //{
+    //    _characterController.SimpleMove(Vector3.forward * 0);
+    //    playerGrounded = _characterController.isGrounded;
+    //}
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
@@ -42,7 +46,7 @@ public class PlayerJump : MonoBehaviour
 
             }
         }
-        playerGrounded = _characterController.isGrounded;
+//        playerGrounded = _characterController.isGrounded;
     }
     private IEnumerator JumpEvent()
     {

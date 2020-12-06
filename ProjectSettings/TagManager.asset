@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - UI_TXT
+  - Fire
+  - "Invent\xE1rio"
   layers:
   - Default
   - TransparentFX

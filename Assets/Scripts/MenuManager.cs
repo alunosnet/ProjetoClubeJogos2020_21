@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    public GameObject _panel;
     public void SairJogo()
     {
         Application.Quit();

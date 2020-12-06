@@ -19,14 +19,22 @@ public class PlayerMove : MonoBehaviour
     float inputRodar;
     float inputSprint;
 
+    PlayerJump playerJump;
+    private Vector3 hitNormal;
+    public float slideFriction = 0.3f;
 
     // Start is called before the first frame update
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        playerJump = GetComponent<PlayerJump>();
     }
-
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        //Debug.Log(hit.normal);
+        hitNormal = hit.normal;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -37,9 +45,25 @@ public class PlayerMove : MonoBehaviour
         inputAndar = velocidadeAndar * inputAndar + (velocidadeAndar * inputSprint);
 
         Vector3 novaPosicao = transform.forward *inputAndar;
-        novaPosicao.y += Physics.gravity.y;
+
+        //deslizar
+        float angulo = Vector3.Angle(Vector3.up, hitNormal);
+            //Debug.Log("Slide slop " + angulo);
+        if (angulo > _characterController.slopeLimit)// && angulo < 45)
+        {
+            novaPosicao = transform.forward;
+            novaPosicao.x += (1f - hitNormal.y) * hitNormal.x * (velocidadeAndar * 2 - slideFriction);
+            novaPosicao.z += (1f - hitNormal.y) * hitNormal.z * (velocidadeAndar * 2 - slideFriction);
+            novaPosicao.y += Physics.gravity.y * 2;
+        }
+        else
+        {
+            novaPosicao.y += Physics.gravity.y;
+        }
+
 
         _characterController.Move(novaPosicao * Time.deltaTime);
+        playerJump.playerGrounded = _characterController.isGrounded;
 
         if (RodarComTeclado == false)
         {
