@@ -19,14 +19,22 @@ public class PlayerMove : MonoBehaviour
     float inputRodar;
     float inputSprint;
 
+    PlayerJump playerJump;
+    private Vector3 hitNormal;
+    public float slideFriction = 0.3f;
 
     // Start is called before the first frame update
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        playerJump = GetComponent<PlayerJump>();
     }
-
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        //Debug.Log(hit.normal);
+        hitNormal = hit.normal;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +48,7 @@ public class PlayerMove : MonoBehaviour
         novaPosicao.y += Physics.gravity.y;
 
         _characterController.Move(novaPosicao * Time.deltaTime);
+        playerJump.playerGrounded = _characterController.isGrounded;
 
         if (RodarComTeclado == false)
         {

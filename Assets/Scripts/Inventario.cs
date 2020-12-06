@@ -7,16 +7,20 @@ using UnityEngine.UI;
 
 public class Inventario : MonoBehaviour
 {
-    [SerializeField] List<Item> _inventario;
-    [SerializeField] GameObject _panel;
-    [SerializeField] Image[] _imagens;
-    GameObject firstPersonController;
+    GameObject _panel;
+    List<Item> _inventario;
+    GameObject _panelImagens;
+    Image[] _imagens;
+    //GameObject firstPersonController;
     // Start is called before the first frame update
     void Start()
     {
         _inventario = new List<Item>();
-        _imagens =Utils.GetComponentsInChildWithoutRoot<Image>(_panel);
-        firstPersonController = GameObject.FindGameObjectWithTag("Player");
+        _panel = GameObject.FindObjectOfType<MenuManager>()._panel;
+        _panelImagens = _panel.GetComponentInChildren<Comment>().gameObject;
+        _imagens =Utils.GetComponentsInChildWithoutRoot<Image>(_panelImagens);
+        Debug.Log("Imagens " + _imagens.Length);
+       // firstPersonController = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -58,7 +62,8 @@ public class Inventario : MonoBehaviour
         //limpar inventario
         for (int i = 0; i < _imagens.Length; i++)
         {
-            _imagens[i].sprite = null;
+            if(_imagens[i]!=null)
+                _imagens[i].sprite = null;
         }
         //mostrar inventario
         for (int i = 0; i < _inventario.Count; i++)
