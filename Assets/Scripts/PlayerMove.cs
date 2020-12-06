@@ -45,22 +45,7 @@ public class PlayerMove : MonoBehaviour
         inputAndar = velocidadeAndar * inputAndar + (velocidadeAndar * inputSprint);
 
         Vector3 novaPosicao = transform.forward *inputAndar;
-
-        //deslizar
-        float angulo = Vector3.Angle(Vector3.up, hitNormal);
-            //Debug.Log("Slide slop " + angulo);
-        if (angulo > _characterController.slopeLimit)// && angulo < 45)
-        {
-            novaPosicao = transform.forward;
-            novaPosicao.x += (1f - hitNormal.y) * hitNormal.x * (velocidadeAndar * 2 - slideFriction);
-            novaPosicao.z += (1f - hitNormal.y) * hitNormal.z * (velocidadeAndar * 2 - slideFriction);
-            novaPosicao.y += Physics.gravity.y * 2;
-        }
-        else
-        {
-            novaPosicao.y += Physics.gravity.y;
-        }
-
+        novaPosicao.y += Physics.gravity.y;
 
         _characterController.Move(novaPosicao * Time.deltaTime);
         playerJump.playerGrounded = _characterController.isGrounded;
