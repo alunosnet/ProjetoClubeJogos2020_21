@@ -8,7 +8,7 @@ public class PushObject : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.gameObject.isStatic) return;
+        if (other.transform.gameObject.isStatic || other.gameObject.CompareTag("Player")==true) return;
         var rb = other.GetComponent<Rigidbody>();
         if(rb != null)
         {

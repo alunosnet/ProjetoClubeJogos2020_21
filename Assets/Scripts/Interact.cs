@@ -16,7 +16,7 @@ public class Interact : MonoBehaviour
     void Start()
     {
         if (_mira == null)
-            Debug.Log("Não tem mira");
+            _mira = GameObject.FindGameObjectWithTag("Mira").GetComponent<RawImage>();
         _camera = FindObjectOfType<Camera>();
         if (_camera == null)
             Debug.Log("Não encontrei uma camara");
@@ -31,6 +31,7 @@ public class Interact : MonoBehaviour
 
         //if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out HitInfo, maxDistance))
         //if (Physics.Raycast(player.transform.position, player.transform.forward, out HitInfo, maxDistance))
+        
         if (Physics.SphereCast(player.transform.position, 1, player.transform.forward, out HitInfo, maxDistance))
         {
             IInteract componente = HitInfo.transform.GetComponent<IInteract>();

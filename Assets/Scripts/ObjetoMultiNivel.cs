@@ -15,15 +15,22 @@ public class ObjetoMultiNivel : MonoBehaviour
     [SerializeField] bool LoadOnStart = false;
     [SerializeField] bool SavePosition = false;
     [SerializeField] bool SaveRotation = false;
+    Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
         //SceneManager.sceneUnloaded += OnSceneUnloaded;
+        Debug.Log("Estamos numa cena");
+       // if (_animator) _animator.enabled = true;
+    }
+    private void Update()
+    {
+        //if (_animator && _animator.isActiveAndEnabled==false) _animator.enabled = true;
     }
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
+
     }
     private void OnDestroy()
     {
@@ -35,7 +42,7 @@ public class ObjetoMultiNivel : MonoBehaviour
             {
                 string posicao = String.Format("{0};{1};{2}", transform.position.x, transform.position.y, transform.position.z);
                 Debug.Log("Guardei a minha posicao " + posicao);
-                PlayerPrefs.SetString(MyID+"Pos", posicao);
+                PlayerPrefs.SetString(MyID + "Pos", posicao);
             }
             if (SaveRotation)
             {
@@ -46,33 +53,36 @@ public class ObjetoMultiNivel : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
-   /* private void OnSceneUnloaded(Scene arg0)
-    {
-        Debug.Log("Nível terminou "+arg0.name);
-        //guardar estado
-        if (MyID != "" && SaveOnEnd)
-        {
-            string posicao = String.Format("Pos:{0};{1};{2}", transform.position.x, transform.position.y, transform.position.z);
-            Debug.Log("Guardei a minha posicao " + posicao);
-            PlayerPrefs.SetString(MyID, posicao);
-            PlayerPrefs.Save();
-        }
-    }
-    */
+    /* private void OnSceneUnloaded(Scene arg0)
+     {
+         Debug.Log("Nível terminou "+arg0.name);
+         //guardar estado
+         if (MyID != "" && SaveOnEnd)
+         {
+             string posicao = String.Format("Pos:{0};{1};{2}", transform.position.x, transform.position.y, transform.position.z);
+             Debug.Log("Guardei a minha posicao " + posicao);
+             PlayerPrefs.SetString(MyID, posicao);
+             PlayerPrefs.Save();
+         }
+     }
+     */
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         Debug.Log("Nível começou " + arg0.name);
         if (MyID != "" && LoadOnStart)
         {
-            string posicao=PlayerPrefs.GetString(MyID+"Pos","");
-            if (posicao != "") {
+            _animator = GetComponent<Animator>();
+            if (_animator) _animator.enabled = false;
+            string posicao = PlayerPrefs.GetString(MyID + "Pos", "");
+            if (posicao != "")
+            {
 
                 Debug.Log("A minha posicao " + posicao);
 
-                    string[] pos = posicao.Split(';');
-                    transform.position = new Vector3(float.Parse(pos[0]),
-                        float.Parse(pos[1]), float.Parse(pos[2]));
-                
+                string[] pos = posicao.Split(';');
+                transform.position = new Vector3(float.Parse(pos[0]),
+                    float.Parse(pos[1]), float.Parse(pos[2]));
+
             }
             string rotacao = PlayerPrefs.GetString(MyID + "Rot", "");
             if (rotacao != "")
@@ -83,14 +93,9 @@ public class ObjetoMultiNivel : MonoBehaviour
                 transform.eulerAngles = new Vector3(float.Parse(pos[0]),
                     float.Parse(pos[1]), float.Parse(pos[2]));
             }
+          //  if (_animator) _animator.enabled = true;
         }
     }
 
-    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -1,0 +1,31 @@
+# MakeHuman exported MTL
+# www.makehuman.org
+
+
+newmtl middleage_asian_male
+Kd 1 0.95 0.85
+Ks 0.02745 0.02745 0.02745
+d 0
+map_Kd textures\middleage_lightskinned_male_diffuse2.png
+map_D textures\middleage_lightskinned_male_diffuse2.png
+
+newmtl Eye_brownlight
+Kd 1 1 1
+Ks 1 1 1
+d 0
+map_Kd textures\brownlight_eye.png
+map_D textures\brownlight_eye.png
+
+newmtl runningshoes
+Kd 1 1 1
+Ks 0.1647 0.1647 0.1647
+d 0
+map_Kd textures\runningshoes.png
+map_D textures\runningshoes.png
+
+newmtl male_casualsuit05
+Kd 1 1 1
+Ks 0.02745 0.02745 0.02745
+d 0
+map_Kd textures\male_casualsuit05_diffuse.png
+map_D textures\male_casualsuit05_diffuse.png

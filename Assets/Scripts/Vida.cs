@@ -8,6 +8,7 @@ public class Vida : MonoBehaviour
     Color atual;
     [SerializeField]Color Cor_Perder_Vida = Color.red;
     [SerializeField] float tempoMudaCor = 1.0f;
+    Renderer _renderer;
     public void RetiraVida(int valor)
     {
         //TODO: mudar a cor do material para vermelho temporariamente
@@ -21,19 +22,20 @@ public class Vida : MonoBehaviour
     IEnumerator MudaCorTempo()
     {
         float currentTempo = tempoMudaCor;
-        atual = GetComponent<Renderer>().material.color;
-        GetComponent<Renderer>().material.color=Cor_Perder_Vida;
+        atual = _renderer.material.color;
+        _renderer.material.color=Cor_Perder_Vida;
         while (currentTempo > 0)
         {
             yield return null;
             currentTempo -= Time.deltaTime;
         }
-        GetComponent<Renderer>().material.color=atual;
+        _renderer.material.color=atual;
     }
     // Start is called before the first frame update
     void Start()
     {
-        atual = GetComponent<Renderer>().material.color;
+        _renderer = GetComponentInChildren<Renderer>();
+        atual = _renderer.material.color;
     }
 
     // Update is called once per frame

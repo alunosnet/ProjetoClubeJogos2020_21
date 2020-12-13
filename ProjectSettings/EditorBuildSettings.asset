@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/terreno.unity
     guid: dd87ee4c16dbec64882b8c7f77ac6656
+  - enabled: 1
+    path: Assets/Scenes/terreno 1.unity
+    guid: 31e15431b00b9a64686c0fec07e9d112
   m_configObjects: {}
