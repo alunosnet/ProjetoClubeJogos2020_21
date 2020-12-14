@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,31 +7,39 @@ public class Vida : MonoBehaviour
 {
     [SerializeField] int vida = 100;
     Color atual;
-    [SerializeField]Color Cor_Perder_Vida = Color.red;
+    [SerializeField] Color Cor_Perder_Vida = Color.red;
     [SerializeField] float tempoMudaCor = 1.0f;
     Renderer _renderer;
     public void RetiraVida(int valor)
     {
-        //TODO: mudar a cor do material para vermelho temporariamente
+
         vida -= valor;
         StartCoroutine("MudaCorTempo");
         if (vida <= 0)
         {
-            Destroy(this.gameObject);
+            Morre();
         }
     }
     IEnumerator MudaCorTempo()
     {
         float currentTempo = tempoMudaCor;
         atual = _renderer.material.color;
-        _renderer.material.color=Cor_Perder_Vida;
+        _renderer.material.color = Cor_Perder_Vida;
         while (currentTempo > 0)
         {
             yield return null;
             currentTempo -= Time.deltaTime;
         }
-        _renderer.material.color=atual;
+        _renderer.material.color = atual;
     }
+
+    internal void Morre()
+    {
+        vida = 0;
+        Destroy(this.gameObject);
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +50,6 @@ public class Vida : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
