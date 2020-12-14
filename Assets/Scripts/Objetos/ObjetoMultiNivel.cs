@@ -15,6 +15,8 @@ public class ObjetoMultiNivel : MonoBehaviour
     [SerializeField] bool LoadOnStart = false;
     [SerializeField] bool SavePosition = false;
     [SerializeField] bool SaveRotation = false;
+    //se existir um animator controller deve ser desativo para a posição
+    //ser atualizada
     Animator _animator;
     // Start is called before the first frame update
     void Start()
@@ -66,13 +68,23 @@ public class ObjetoMultiNivel : MonoBehaviour
          }
      }
      */
+    public void Ativar()
+    {
+        if(_animator==null)
+            _animator = GetComponent<Animator>();
+        if (_animator) _animator.enabled = true;
+
+    }
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         Debug.Log("Nível começou " + arg0.name);
         if (MyID != "" && LoadOnStart)
         {
+            //desativa o animator
             _animator = GetComponent<Animator>();
             if (_animator) _animator.enabled = false;
+            //prepara a reativação
+            //Invoke("Ativar", 3);
             string posicao = PlayerPrefs.GetString(MyID + "Pos", "");
             if (posicao != "")
             {
@@ -82,6 +94,7 @@ public class ObjetoMultiNivel : MonoBehaviour
                 string[] pos = posicao.Split(';');
                 transform.position = new Vector3(float.Parse(pos[0]),
                     float.Parse(pos[1]), float.Parse(pos[2]));
+                _animator.rootPosition = transform.position;
 
             }
             string rotacao = PlayerPrefs.GetString(MyID + "Rot", "");

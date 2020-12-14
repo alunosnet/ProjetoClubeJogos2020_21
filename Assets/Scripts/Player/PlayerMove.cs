@@ -45,9 +45,7 @@ public class PlayerMove : MonoBehaviour
         inputSprint = CrossPlatformInputManager.GetAxis("Fire3");
 
         if (inputAndar <= 0)
-        {
             Andar = velocidadeAndarTras * inputAndar;
-        }
         else
             Andar = velocidadeAndar * inputAndar + (velocidadeAndar * inputSprint);
 
@@ -67,16 +65,20 @@ public class PlayerMove : MonoBehaviour
         {
             novaPosicao.y += Physics.gravity.y;
         }
+
         _characterController.Move(novaPosicao * Time.deltaTime);
         playerJump.playerGrounded = _characterController.isGrounded;
 
-        if (RodarComTeclado == false && inputRodar!=0 && inputAndar==0)
+        if (RodarComTeclado == false)
         {
-            novaPosicao = transform.right * velocidadeAndar * inputRodar;
-            _characterController.Move(novaPosicao * Time.deltaTime);
-            if (inputRodar > 0) _animator.SetBool("rightwalk",true);
-            if (inputRodar < 0) _animator.SetBool("leftwalk",true);
-            //_animator.SetFloat("velocidadelateral", inputRodar);
+            if (inputRodar != 0 && inputAndar == 0)
+            {
+                novaPosicao = transform.right * velocidadeAndar * inputRodar;
+                _characterController.Move(novaPosicao * Time.deltaTime);
+                if (inputRodar > 0) _animator.SetBool("rightwalk", true);
+                if (inputRodar < 0) _animator.SetBool("leftwalk", true);
+                //_animator.SetFloat("velocidadelateral", inputRodar);
+            }
         }
         else
         {
