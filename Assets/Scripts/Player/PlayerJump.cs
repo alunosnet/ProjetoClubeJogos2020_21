@@ -13,9 +13,11 @@ public class PlayerJump : MonoBehaviour
     public bool canDoubleJump = false;
     [SerializeField] bool isDoubleJumping=false;
     Animator _animator;
+    Vida playerVida;
     // Start is called before the first frame update
     void Start()
     {
+        playerVida = GetComponent<Vida>();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
     }
@@ -27,6 +29,7 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerVida.GetVida() <= 0) return;
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
             if (isJumping == false)

@@ -19,7 +19,7 @@ public class Inventario : MonoBehaviour
         _panel = GameObject.FindObjectOfType<MenuManager>()._panel;
         _panelImagens = _panel.GetComponentInChildren<Comment>().gameObject;
         _imagens =Utils.GetComponentsInChildWithoutRoot<Image>(_panelImagens);
-        Debug.Log("Imagens " + _imagens.Length);
+        //Debug.Log("Imagens " + _imagens.Length);
        // firstPersonController = GameObject.FindGameObjectWithTag("Player");
     }
 

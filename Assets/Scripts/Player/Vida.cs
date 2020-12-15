@@ -9,6 +9,7 @@ public class Vida : MonoBehaviour
     Color atual;
     [SerializeField] Color Cor_Perder_Vida = Color.red;
     [SerializeField] float tempoMudaCor = 1.0f;
+    [SerializeField] bool destroyWhenDead = false;
     Renderer _renderer;
     public void RetiraVida(int valor)
     {
@@ -36,10 +37,14 @@ public class Vida : MonoBehaviour
     internal void Morre()
     {
         vida = 0;
-        Destroy(this.gameObject);
+        Messages.instance.showMessage("You are dead!",Color.red);
+        if(destroyWhenDead) Destroy(this.gameObject);
 
     }
-
+    public int GetVida()
+    {
+        return vida;
+    }
     // Start is called before the first frame update
     void Start()
     {
