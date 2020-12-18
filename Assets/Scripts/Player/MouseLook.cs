@@ -12,6 +12,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField] float SmoothDampY = 0.2f;
     public float minCameraY = 1;
     public float maxCameraY = 7;
+
     public Transform playerBody;
     private float xRotation = 0;
     private float yRotation;

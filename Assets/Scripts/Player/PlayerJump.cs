@@ -18,6 +18,7 @@ public class PlayerJump : MonoBehaviour
     void Start()
     {
         playerVida = GetComponent<Vida>();
+
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
     }

@@ -24,16 +24,19 @@ public class PlayerMove : MonoBehaviour
 
     PlayerJump playerJump;
     private Vector3 hitNormal;
+
     private float hitHeight;
     public float slideFriction = 0.3f;
 
     Vida playerVida;
+
     // Start is called before the first frame update
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
         playerJump = GetComponent<PlayerJump>();
+
         playerVida = GetComponent<Vida>();
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -41,6 +44,7 @@ public class PlayerMove : MonoBehaviour
         hitNormal = hit.normal;
         hitHeight = hit.point.y - transform.position.y;
         //Debug.Log(hit.gameObject.name+" "+hitHeight+" "+playerJump.playerGrounded);
+
     }
     // Update is called once per frame
     void Update()

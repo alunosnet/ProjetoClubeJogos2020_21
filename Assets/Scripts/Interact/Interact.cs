@@ -36,6 +36,7 @@ public class Interact : MonoBehaviour
         {
             IInteract componente = HitInfo.transform.GetComponent<IInteract>();
             //Debug.Log(HitInfo.transform.name);
+
             if (componente!= null)
                 _mira.color = _interactColor;
             if ((Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.E)) && componente != null)

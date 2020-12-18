@@ -37,6 +37,7 @@ public class Vida : MonoBehaviour
     internal void Morre()
     {
         vida = 0;
+
         Messages.instance.showMessage("You are dead!",Color.red);
         if(destroyWhenDead) Destroy(this.gameObject);
 
@@ -45,6 +46,7 @@ public class Vida : MonoBehaviour
     {
         return vida;
     }
+
     // Start is called before the first frame update
     void Start()
     {
