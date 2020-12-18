@@ -10,8 +10,9 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivityY = 5f;
     [SerializeField] float SmoothDampX = 0.2f;
     [SerializeField] float SmoothDampY = 0.2f;
-    [SerializeField] float minCameraY = 1;
-    [SerializeField] float maxCameraY = 7;
+    public float minCameraY = 1;
+    public float maxCameraY = 7;
+
     public Transform playerBody;
     private float xRotation = 0;
     private float yRotation;
@@ -40,7 +41,7 @@ public class MouseLook : MonoBehaviour
         // xRotation -= mouseY;
         // xRotation = Mathf.Clamp(xRotation, -90, 90f);
 
-
+        //roda o player
         float ty = Mathf.SmoothStep(transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.y + mouseX, SmoothDampX);
         transform.localRotation = Quaternion.Euler(0,ty, 0f);
         //playerBody.Rotate(mouseX *Vector3.up );

@@ -35,7 +35,8 @@ public class Interact : MonoBehaviour
         if (Physics.SphereCast(player.transform.position, 1, player.transform.forward, out HitInfo, maxDistance))
         {
             IInteract componente = HitInfo.transform.GetComponent<IInteract>();
-            Debug.Log(HitInfo.transform.name);
+            //Debug.Log(HitInfo.transform.name);
+
             if (componente!= null)
                 _mira.color = _interactColor;
             if ((Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.E)) && componente != null)

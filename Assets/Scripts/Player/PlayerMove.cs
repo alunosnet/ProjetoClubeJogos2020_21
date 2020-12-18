@@ -24,22 +24,36 @@ public class PlayerMove : MonoBehaviour
 
     PlayerJump playerJump;
     private Vector3 hitNormal;
+
+    private float hitHeight;
     public float slideFriction = 0.3f;
+
+    Vida playerVida;
+
     // Start is called before the first frame update
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
         playerJump = GetComponent<PlayerJump>();
+
+        playerVida = GetComponent<Vida>();
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        //Debug.Log(hit.normal);
         hitNormal = hit.normal;
+        hitHeight = hit.point.y - transform.position.y;
+        //Debug.Log(hit.gameObject.name+" "+hitHeight+" "+playerJump.playerGrounded);
+
     }
     // Update is called once per frame
     void Update()
     {
+        if(playerVida!=null && playerVida.GetVida() <= 0)
+        {
+            _animator.SetBool("dead", true);
+            return;
+        }
         inputAndar = CrossPlatformInputManager.GetAxis("Vertical");
         inputRodar = CrossPlatformInputManager.GetAxis("Horizontal");
         inputSprint = CrossPlatformInputManager.GetAxis("Fire3");
@@ -50,22 +64,25 @@ public class PlayerMove : MonoBehaviour
             Andar = velocidadeAndar * inputAndar + (velocidadeAndar * inputSprint);
 
         Vector3 novaPosicao = transform.forward * Andar;
-       
+
         //deslizar
-        float angulo = Vector3.Angle(Vector3.up, hitNormal);
-        
-        if (angulo > _characterController.slopeLimit)// && angulo < 45)
+        if (playerJump.playerGrounded)
         {
-            novaPosicao = transform.forward;
-            novaPosicao.x += (1f - hitNormal.y) * hitNormal.x * (velocidadeAndar * 2 - slideFriction);
-            novaPosicao.z += (1f - hitNormal.y) * hitNormal.z * (velocidadeAndar * 2 - slideFriction);
-            novaPosicao.y += Physics.gravity.y * 2;
+            float angulo = Vector3.Angle(Vector3.up, hitNormal);
+           // Debug.Log(angulo);
+            if (angulo > _characterController.slopeLimit && angulo < 90 && hitHeight<0.15 && hitHeight>0)
+            {
+                novaPosicao = transform.forward;
+                novaPosicao.x += (1f - hitNormal.y) * hitNormal.x * (velocidadeAndar * 2 - slideFriction);
+                novaPosicao.z += (1f - hitNormal.y) * hitNormal.z * (velocidadeAndar * 2 - slideFriction);
+                novaPosicao.y += Physics.gravity.y * 2;
+            }
         }
         else
         {
             novaPosicao.y += Physics.gravity.y;
+        
         }
-
         _characterController.Move(novaPosicao * Time.deltaTime);
         playerJump.playerGrounded = _characterController.isGrounded;
 
