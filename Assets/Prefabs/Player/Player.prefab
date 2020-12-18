@@ -254,10 +254,10 @@ MonoBehaviour:
   Inside: 0
   Transition: 0
   TransitionTime: 1
-  InsideDistanceY: 2
-  InsideDistanceZ: -2
+  InsideDistanceY: 0.5
+  InsideDistanceZ: -1
   OutsideDistanceY: 5
-  OutsideDistanceZ: -10
+  OutsideDistanceZ: -7
 --- !u!1001 &5036051901153850384
 PrefabInstance:
   m_ObjectHideFlags: 0
